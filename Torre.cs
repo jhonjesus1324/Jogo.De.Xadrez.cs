@@ -5,10 +5,11 @@ namespace Xadrez
 {
     class Torre : Peca
     {
-
-        public Torre(Tabuleiros tab, Cor cor) : base(tab, cor) { 
+        public Torre(Tabuleiros tab, Cor cor) : base(tab, cor)
+        {
         }
-        public override string ToString(){
+        public override string ToString()
+        {
             return "T";
         }
     }
