@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using tabuleiro;
 using Xadrez;
 
@@ -6,6 +7,54 @@ namespace Xadrez_console
 {
     class Tela
     {
+
+        //Imprimir partida na tela.
+        public static void imprimirPartida(Partida_de_Xadrez partida)
+        {
+            imprimirTabuleiro(partida.tab);
+            Console.WriteLine();
+            imprimirPecasCapturadas(partida);
+            Console.WriteLine();
+            Console.WriteLine("Turno: " + partida.turno);
+            if (!partida.terminada){ 
+                Console.WriteLine("Aguardando jogada: " + partida.jogadorAtual);
+                if (partida.xeque){
+                    Console.WriteLine("XEQUE!");
+                }
+            }
+            else
+            {
+                Console.WriteLine("XEQUEMATE!");
+                Console.WriteLine("Vencedor: " + partida.jogadorAtual);
+            }
+        }
+
+        //Imprimir peças capturadas.
+        public static void imprimirPecasCapturadas(Partida_de_Xadrez partida)
+        {
+            Console.WriteLine("Peças capturadas:");
+            Console.WriteLine();
+            Console.Write("Brancas: ");
+            imprimirConjunto(partida.pecasCapturadas(Cor.Branca));
+            Console.Write("Pretas: ");
+            ConsoleColor aux = Console.ForegroundColor; 
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            imprimirConjunto(partida.pecasCapturadas(Cor.Preta));
+            Console.ForegroundColor = aux;
+            Console.WriteLine();
+        }
+
+        //Imrpimir conjunto.
+        public static void imprimirConjunto(HashSet<Peca> conjunto)
+        {
+            Console.Write("[");
+            foreach (Peca x in conjunto)
+            {
+                Console.Write(x + " ");
+            }
+            Console.WriteLine("]");
+        }
+
         public static void imprimirTabuleiro(Tabuleiros tab)
         {
             for (int i = 0; i < tab.linhas; i++){
@@ -19,6 +68,7 @@ namespace Xadrez_console
             Console.WriteLine("  a b c d e f g h");
         }
 
+        //Monta o tabuleiro.
         public static void imprimirTabuleiro(Tabuleiros tab, bool[,] posicoePossiveis)
         {
             ConsoleColor fundoOriginal = Console.BackgroundColor;

@@ -20,9 +20,16 @@ namespace tabuleiro
         }
 
 
+        //Adiciona uma unidade dessa quantidade.
         public void incrementarQteMovimentos()
         {
             qteMovimentos++;
+        }
+
+        //Tira uma unidade dessa quantidade.
+        public void decrementarQteMovimentos()
+        {
+            qteMovimentos--;
         }
 
         public bool existeMovimentosPossiveis()
@@ -39,8 +46,7 @@ namespace tabuleiro
             return false;
         }
 
-
-        public bool podeMoverPara(Posicao pos)
+        public bool movimentoPossivel(Posicao pos)
         {
             return movimentosPossiveis()[pos.linha, pos.coluna];
         }

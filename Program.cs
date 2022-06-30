@@ -18,10 +18,7 @@ namespace Xadrez_console
                     try
                     {
                         Console.Clear();
-                        Tela.imprimirTabuleiro(partida.tab);
-                        Console.WriteLine();
-                        Console.WriteLine("Turno: " + partida.turno);
-                        Console.WriteLine("Aguardando jogador: " + partida.jogadorAtual);
+                        Tela.imprimirPartida(partida);
 
                         Console.WriteLine();
                         Console.Write("Origem: ");
@@ -41,20 +38,16 @@ namespace Xadrez_console
 
                         partida.realizaJogada(origem, destino);
                     }
-                    catch (TabuleiroException e)
-                    {
+                    catch (TabuleiroException e){
                         Console.WriteLine(e.Message);
                         Console.WriteLine();
                     }
 
                 }
-                
-
+                Console.Clear();
                 Tela.imprimirTabuleiro(partida.tab);
-
             }
-            catch(TabuleiroException e)
-            {
+            catch(TabuleiroException e){
                 Console.WriteLine(e.Message);
             }
             Console.WriteLine();
